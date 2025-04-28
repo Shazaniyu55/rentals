@@ -8,6 +8,7 @@ fetch("http://localhost:2300/api/v2/get/categories")
     const defaultOption = document.createElement('option');
     defaultOption.text = "Select Category";
     defaultOption.value = "";
+    defaultOption.name = "";
     defaultOption.disabled = true;
     defaultOption.selected = true;
     items.appendChild(defaultOption);
@@ -17,6 +18,7 @@ fetch("http://localhost:2300/api/v2/get/categories")
         const option = document.createElement('option');
         option.value =  category; // Adjust based on your API data structure
         option.text = category; // Adjust based on your API data structure
+        option.name = category; 
         items.appendChild(option);
     });
 })

@@ -27,20 +27,19 @@ const houseController ={
 
     search: async (req, res)=>{
         const criteria = req.body;
-        const {location, category, price} = criteria;
+        const {state, name} = criteria;
         const query = {};
-        if(location){
-            query.location = {$regex: location, $options: 'i'};
+        if(state){
+            query.state = {$regex: state, $options: 'i'};
         }
-        if(category){
-            query.category = category;
+        if(name){
+            query.name = {$regex: name, $options: 'i'};;
         }
-        if(price){
-            query.price = {$lte: price};
-        }
+       
         try {
             const house = await houses.find(query);
-            res.render("index", {house});
+            console.log(house);
+            //res.render("index", {house});
             
         } catch (error) {
             res.status(500).send('Error fetching jobs');

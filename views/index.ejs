@@ -96,30 +96,35 @@
         <!-- Search Start -->
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
+                <form action="/api/v2/get/search" method="post">
                 <div class="row g-2">
                     <div class="col-md-10">
+                        
                         <div class="row g-2">
                             <div class="col-md-4">
                                 <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select border-0 py-3" id="Category">
+                                <select class="form-select border-0 py-3" name="name" id="Category">
                                     <option selected>Property Type</option>
                                     
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select border-0 py-3" id="State">
+                                <select class="form-select border-0 py-3" name="state" id="State">
                                     <option selected>Location</option>
                                     
                                 </select>
                             </div>
                         </div>
+                    
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                        <button class="btn btn-dark border-0 w-100 py-3" type="submit">Search</button>
                     </div>
                 </div>
+
+            </form>
             </div>
         </div>
         <!-- Search End -->

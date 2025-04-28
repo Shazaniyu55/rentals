@@ -15,7 +15,6 @@ const CATEGORIES = {
     Hall: "Hall Booking",
     Office: "Office",
     Land: "Land",
-    Apartment: "Apartment",
     Hotel: "Hotel",
     Restaurant: "Restaurant",
     Warehouse: "Warehouse",
@@ -25,7 +24,7 @@ const CATEGORIES = {
     Farm: "Farm",
     Villa: "Villa",
     Studio: "Studio",
-    Bungalow: "Bungalow",
+    Appartment: "Appartment",
     Penthouse: "Penthouse",
     
   };
@@ -68,5 +67,6 @@ const CATEGORIES = {
     Yobe: "Yobe",
     Zamfara: "Zamfara",
     FCT: "FCT",
+    Abuja: "Abuja",
   }
 module.exports = {CATEGORIES, PAYMENT_STATUS, cloudConfigs, STATE};

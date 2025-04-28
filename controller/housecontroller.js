@@ -16,8 +16,9 @@ const houseController ={
     getAllCategories: async (req, res)=>{
         try {
             const categories = Object.values(CATEGORIES);
+            res.status(200).json({Status:"success", message:"success", categories});
             console.log(categories);
-            //res.render("categories", {categories});
+            
             
         } catch (error) {
             res.status(500).send('Error fetching categories');

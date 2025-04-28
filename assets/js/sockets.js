@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://localhost:2400');
+const ws = new WebSocket('ws://localhost:2300');
 
 ws.onopen = () => {
     console.log('Connected to WebSocket server');

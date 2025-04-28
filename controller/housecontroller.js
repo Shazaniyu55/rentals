@@ -23,6 +23,29 @@ const houseController ={
             res.status(500).send('Error fetching categories');
         }
     },
+
+    search: async (req, res)=>{
+        const criteria = req.body;
+        const {location, category, price} = criteria;
+        const query = {};
+        if(location){
+            query.location = {$regex: location, $options: 'i'};
+        }
+        if(category){
+            query.category = category;
+        }
+        if(price){
+            query.price = {$lte: price};
+        }
+        try {
+            const house = await houses.find(query);
+            res.render("index", {house});
+            
+        } catch (error) {
+            res.status(500).send('Error fetching jobs');
+        }
+        
+    }
 }
 
 module.exports = houseController;

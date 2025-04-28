@@ -6,5 +6,8 @@ const getRouter = express.Router();
 getRouter.get('/home', houseController.getAllHouse);
 getRouter.get('/categories', houseController.getAllCategories);
 getRouter.post('/search', houseController.search);
+getRouter.get('/states', houseController.getAllState);
+
+
 
 module.exports = getRouter;

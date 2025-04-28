@@ -1,5 +1,5 @@
 const houses = require("../model/housemodel");
-const {CATEGORIES} = require("../constant/index");
+const {CATEGORIES, STATE} = require("../constant/index");
 
 
 const houseController ={
@@ -17,7 +17,7 @@ const houseController ={
         try {
             const categories = Object.values(CATEGORIES);
             res.status(200).json({Status:"success", message:"success", categories});
-            console.log(categories);
+            
             
             
         } catch (error) {
@@ -46,7 +46,19 @@ const houseController ={
             res.status(500).send('Error fetching jobs');
         }
         
-    }
+    },
+
+    getAllState: async (req, res)=>{
+        try {
+            const states = Object.values(STATE);
+            res.status(200).json({Status:"success", message:"success", states});
+            
+            
+            
+        } catch (error) {
+            res.status(500).send('Error fetching categories');
+        }
+    },
 }
 
 module.exports = houseController;

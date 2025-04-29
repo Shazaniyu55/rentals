@@ -3,6 +3,7 @@ const {registerUserSchema, loginSchema} = require("../validations/authvalidation
 const {hashPassword, comparePasswords} = require("../utils/bcrypt");
 const {generateOtp} = require("../utils/generateOtp");
 const {sendOtpEmail, sendForgotPasswordEmail, sendLoginNotificationEmail} = require("../utils/emailserivce");
+const STATUSCODES = require('../constant/statuscode');
 
 const authController = {
 
@@ -76,6 +77,24 @@ const authController = {
 
 
 
+  },
+  login: async(req, res)=>{
+    const {email, password} = req.body;
+    if(!email || !password){
+        res.status(STATUSCODES.BAD_REQUEST).json({status:"failed", message:"email and password are required"})
+    }
+
+    const result =  loginSchema.safeParse(req.body);
+    if(!result){
+        res.status(STATUSCODES.INTERNAL_SERVER_ERROR).json({status:"failed", message: "internal server error"});
+
+    }
+    const user = userService.getUserByEmail(email);
+    if(!user){
+        res.status(STATUSCODES.INTERNAL_SERVER_ERROR).json({status:"failed", message:"user with this email does not exist"});
+
+    }
+    
   }
 }
 

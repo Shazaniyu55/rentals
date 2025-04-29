@@ -32,7 +32,7 @@ fetch("http://localhost:2300/api/v2/get/states")
 .then((data) => {
     items2.innerHTML = "";
     const defaultOption = document.createElement('option');
-    defaultOption.text = "Select Category";
+    defaultOption.text = "Select State";
     defaultOption.value = "";
     defaultOption.disabled = true;
     defaultOption.selected = true;

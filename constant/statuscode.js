@@ -9,5 +9,5 @@ const statusCodes = {
     INTERNAL_SERVER_ERROR: 500,
   };
   
-  export default statusCodes;
+module.exports = statusCodes;
   

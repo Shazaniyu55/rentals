@@ -71,7 +71,7 @@ const houseController ={
           } catch (error) {
             
           } 
-      }
+    }
 }
 
 module.exports = houseController;

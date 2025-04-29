@@ -4,6 +4,10 @@ const {hashPassword, comparePasswords} = require("../utils/bcrypt");
 const {generateOtp} = require("../utils/generateOtp");
 const {sendOtpEmail, sendForgotPasswordEmail, sendLoginNotificationEmail} = require("../utils/emailserivce");
 const STATUSCODES = require('../constant/statuscode');
+const NotificationService = require("../services/notificationservice");
+
+
+
 
 const authController = {
 
@@ -101,6 +105,28 @@ const authController = {
 
     }
 
+    const userResponse = {
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      phoneNumber: user.phoneNumber,
+      email: lowerCaseEmail,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+
+    const token = jwtSign({
+      _id: user._id,
+      email: lowerCaseEmail,
+    });
+
+    await NotificationService.sendWebPushNotification(
+      user._id,
+      `Welcome Back, ${user.fullName}! 🎉`,
+      `Hi ${user.fullName}, you've successfully logged in to your account. We're glad to have you back!`,
+    );
+
+    res.redirect('/dashboard');
     
   },
 

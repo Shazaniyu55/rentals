@@ -258,7 +258,7 @@
                                     </div>
                                     <div class="p-4 pb-0">
                                         <h5 class="text-primary mb-3">₦<%= jobs.price %></h5>
-                                        <a class="d-block h5 mb-2" href="/cart/<%= jobs.id %>"><%= jobs.description %></a>
+                                        <a class="d-block h5 mb-2" href="/api/v2/get/cart/<%= jobs.id %>"><%= jobs.description %></a>
                                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i> <%= jobs.address %></p>
                                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i> <%= jobs.state %></p>
                                         <p><i class="fa fa-house text-primary me-2"></i> <%= jobs.type %></p>

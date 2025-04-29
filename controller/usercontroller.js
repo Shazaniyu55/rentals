@@ -78,6 +78,7 @@ const authController = {
 
 
   },
+
   login: async(req, res)=>{
     const {email, password} = req.body;
     if(!email || !password){
@@ -94,8 +95,16 @@ const authController = {
         res.status(STATUSCODES.INTERNAL_SERVER_ERROR).json({status:"failed", message:"user with this email does not exist"});
 
     }
+    const isPasswordValid = await comparePasswords(password, user.password);
+    if(!isPasswordValid){
+        res.status(STATUSCODES.BAD_REQUEST).json({status:"failed", message:"invalid password"});
+
+    }
+
     
-  }
+  },
+
+ 
 }
 
 

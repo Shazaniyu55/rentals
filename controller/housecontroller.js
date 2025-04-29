@@ -38,7 +38,7 @@ const houseController ={
        
         try {
             const house = await houses.find(query);
-            console.log(house);
+            //console.log(house);
             res.render('search', {house});
             
         } catch (error) {
@@ -58,6 +58,20 @@ const houseController ={
             res.status(500).send('Error fetching categories');
         }
     },
+    cart: async(req, res)=>{
+        const {id} = req.params;
+          try {
+            const cart = await houses.findById(id);
+            if(!cart){
+                return res.status(404).json({status:"failed", message:"house not found"});
+            }
+            //console.log(cart);
+            res.render('cart', {cart});
+            
+          } catch (error) {
+            
+          } 
+      }
 }
 
 module.exports = houseController;

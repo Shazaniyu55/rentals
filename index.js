@@ -16,7 +16,8 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
 
-
+let user = [];
+let proof = [];
 
 connectDB();
 
@@ -50,6 +51,9 @@ app.get('/contact', (req, res) => {
 });
 
 
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard/dashboard', {user, proof});
+});
 app.get('/login', (req, res) => {
     res.render('login');
 });

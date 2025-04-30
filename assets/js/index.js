@@ -1,7 +1,7 @@
 var items = document.getElementById("Category");
 var items2 = document.getElementById("State");
 
-fetch("http://localhost:2300/api/v2/get/categories")
+fetch("https://rentalsmvp.vercel.app/api/v2/get/categories")
 .then((response) => response.json())
 .then((data) => {
     items.innerHTML = "";
@@ -27,7 +27,7 @@ fetch("http://localhost:2300/api/v2/get/categories")
 });
 
 
-fetch("http://localhost:2300/api/v2/get/states")
+fetch("https://rentalsmvp.vercel.app/api/v2/get/states")
 .then((response) => response.json())
 .then((data) => {
     items2.innerHTML = "";

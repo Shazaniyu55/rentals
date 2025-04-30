@@ -54,11 +54,11 @@
 
   <body>
     <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-wrapper layout-content-navbar ">
       <div class="layout-container">
         <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme m-4 p-4">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-black  m-4 p-4">
           <div class="app-brand demo">
             <a href="" class="app-brand-link">
               <span class="app-brand-logo demo me-1">
@@ -67,7 +67,7 @@
                    <img src="/img/icon-deal.png" class="rounded-circle" alt="">
                 </span>
               </span>
-              <span class="app-brand-text demo menu-text fw-semibold ms-2">Rentals</span>
+              <span class="app-brand-text text-white demo menu-text fw-semibold ms-2">Rentals</span>
             </a>
 
           
@@ -79,8 +79,8 @@
             <!-- Dashboards -->
             <li class="menu-item active open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ri-home-smile-line"></i>
-                <div data-i18n="Dashboards">Dashboards</div>
+                <i class="menu-icon tf-icons ri-home-smile-line text-white"></i>
+                <div data-i18n="Dashboards " class="text-white">Dashboards</div>
               </a>
               <!-- <ul class="menu-sub">
                 
@@ -124,16 +124,30 @@
             
             
             <!-- Components -->
-            <li class="menu-header mt-7"><span class="menu-header-text">  Upload</span></li>
+            <li class="menu-header mt-7"><span class="menu-header-text text-white">  Property</span></li>
             
             <li class="menu-item">
               <a href="" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ri-layout-left-line"></i>
-                <div data-i18n="Account Settings">Edit Product</div>
+                <i class="menu-icon tf-icons ri-layout-left-line text-white"></i>
+                <div data-i18n="Account Settings" class="text-white">Manage Property</div>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="/manage/<%= user.id %>" class="menu-link">
+                  <a href="/manage/<%= user.id %>" class="menu-link text-white" >
+                    <div data-i18n="Account">ADD</div>
+                  </a>
+                </li>
+
+
+                <li class="menu-item">
+                  <a href="/manage/<%= user.id %>" class="menu-link text-white">
+                    <div data-i18n="Account">Remove</div>
+                  </a>
+                </li>
+
+
+                <li class="menu-item">
+                  <a href="/manage/<%= user.id %>" class="menu-link text-white">
                     <div data-i18n="Account">Edit</div>
                   </a>
                 </li>
@@ -191,7 +205,7 @@
                           </div>
                           <div class="flex-grow-1">
                             <h6 class="mb-0 small">Welcome</h6>
-                            <small class="text-muted">Admin</small>
+                            <small class="text-muted">User</small>
                           </div>
                         </div>
                       </a>

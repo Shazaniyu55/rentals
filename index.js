@@ -73,6 +73,11 @@ app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
 
+app.get('/csae-policy', (req, res) => {
+   
+    res.render('csa');
+});
+
 server.listen(port, ()=>{
     console.log(`server running at http://localhost:${port}`)
 });

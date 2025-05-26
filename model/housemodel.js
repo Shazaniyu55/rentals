@@ -60,6 +60,12 @@ const houseSchema = new mongoose.Schema({
         required: true,
         default:false
     },
+     userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+     },
+        
     
     
 

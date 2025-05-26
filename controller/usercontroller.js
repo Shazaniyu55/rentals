@@ -72,9 +72,9 @@ const authController = {
   },
 
   verifyOtp: async (req, res) => {
-    //const { email } = req.params;
+    
      const { email, otp } = req.body;
-    console.log(email, otp);
+  
     let user;
     let proof = [];
 
@@ -127,67 +127,68 @@ const authController = {
       updatedAt: user.updatedAt,
     };
 
-
-    if(user.userType === "House Owners"){
-        res.render('house_owner_dash/dashboard',{user, proof})
-        //console.log("welcome house owner")
-    }else if(user.userType === "Users"){
-      res.render('dashboard/dashboard', {user, proof})
-      //console.log("welcome users")
-    }else{
-      console.log("falsify")
-    }
+       res.redirect('/login')
+    // if(user.userType === "House Owners"){
+    //     res.render('house_owner_dash/dashboard',{user, proof})
+    //     //console.log("welcome house owner")
+    // }else if(user.userType === "Users"){
+    //   res.render('dashboard/dashboard', {user, proof})
+    //   //console.log("welcome users")
+    // }else{
+    //   console.log("falsify")
+    // }
 
 
 
   },
 
-  login: async(req, res)=>{
-    const {email, password} = req.body;
-    if(!email || !password){
-        res.status(STATUSCODES.BAD_REQUEST).json({status:"failed", message:"email and password are required"})
-    }
+ login: async (req, res) => {
+  const { email, password } = req.body;
+  console.log("Email:", email, "Password:", password);
 
-    const result =  loginSchema.safeParse(req.body);
-    if(!result){
-        res.status(STATUSCODES.INTERNAL_SERVER_ERROR).json({status:"failed", message: "internal server error"});
+  let proof = [];
 
-    }
-    const user = userService.getUserByEmail(email);
-    if(!user){
-        res.status(STATUSCODES.INTERNAL_SERVER_ERROR).json({status:"failed", message:"user with this email does not exist"});
+  if (!email || !password) {
+    return res.status(400).json({ status: "failed", message: "Email and password are required" });
+  }
 
-    }
-    const isPasswordValid = await comparePasswords(password, user.password);
-    if(!isPasswordValid){
-        res.status(STATUSCODES.BAD_REQUEST).json({status:"failed", message:"invalid password"});
+  const result = loginSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ status: "failed", message: "Invalid input data" });
+  }
 
-    }
+  const user = await userService.getUserByEmail(email); // <-- Add await
 
-    const userResponse = {
-      _id: user._id,
-      fullName: user.fullName,
-      username: user.username,
-      phoneNumber: user.phoneNumber,
-      email: lowerCaseEmail,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    };
+  if (!user) {
+    return res.status(404).json({ status: "failed", message: "User with this email does not exist" });
+  }
 
-    const token = jwtSign({
-      _id: user._id,
-      email: lowerCaseEmail,
-    });
+  // const isPasswordValid = await comparePasswords(password, user.password);
+  // if (!isPasswordValid) {
+  //   return res.status(401).json({ status: "failed", message: "Invalid password" });
+  // }
 
-    await NotificationService.sendWebPushNotification(
-      user._id,
-      `Welcome Back, ${user.fullName}! 🎉`,
-      `Hi ${user.fullName}, you've successfully logged in to your account. We're glad to have you back!`,
-    );
+  const userResponse = {
+    _id: user._id,
+    fullName: user.fullName,
+    username: user.username,
+    phoneNumber: user.phoneNumber,
+    email: user.email,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
+  };
 
-    res.redirect('/dashboard');
-    
-  },
+  // Render based on userType
+  if (user.userType === "House Owners") {
+    return res.render("house_owner_dash/dashboard", { user: userResponse, proof });
+  } else if (user.userType === "Users") {
+    return res.render("dashboard/dashboard", { user: userResponse, proof });
+  } else {
+    console.log("Invalid userType:", user.userType);
+    return res.status(400).json({ status: "failed", message: "Unknown user type" });
+  }
+},
+
 
   getUserProfile: async (req, res) => {
     const userId = req.body;

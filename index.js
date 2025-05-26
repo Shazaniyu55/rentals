@@ -68,6 +68,11 @@ app.get('/otp', (req, res) => {
     res.render('otp');
 });
 
+app.get('/privacy', (req, res) => {
+   
+    res.render('privacy');
+});
+
 server.listen(port, ()=>{
     console.log(`server running at http://localhost:${port}`)
 });

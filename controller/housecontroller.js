@@ -71,6 +71,20 @@ const houseController ={
           } catch (error) {
             
           } 
+    },
+
+    count: async(req, res)=>{
+        try{
+            const{userId} = req.body;
+            const myHouse = await houses.find({
+                userId: userId,
+
+            })
+            const num = myHouse.length
+            res.render('house_owner_dash/dashboard', {num})
+        }catch(error){
+
+        }
     }
 }
 

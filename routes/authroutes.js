@@ -15,6 +15,7 @@ function isAuthenticated(req, res, next) {
 authRouter.post('/register', authController.register);
 authRouter.post('/verify', authController.verifyOtp);
 authRouter.get('/profile', authController.verifyOtp);
+authRouter.post('/login', authController.login);
 
 
 module.exports = authRouter;
